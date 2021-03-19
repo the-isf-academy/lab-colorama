@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+	<div class="col text-center">
+		<h1> Hello {{name}}</h1>
+		<p>You found the first color!</p>
+		{% include "color.html" %}
+	</div>
+</div>
+
+{% endblock %}
+
