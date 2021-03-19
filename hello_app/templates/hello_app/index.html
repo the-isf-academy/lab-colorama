@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type ="text/css" href="{% static 'hello_app/custom.css' %}">
+
+<title>Hello App</title>
+{% endblock %}
 
 {% block content %}
 <div class="row">
