@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cs10_webapp_base.urls'
+ROOT_URLCONF = 'colorama.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cs10_webapp_base.wsgi.application'
+WSGI_APPLICATION = 'colorama.wsgi.application'
 
 
 # Database
@@ -150,7 +150,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'cs10': {
+        'colorama': {
             'format': '[CS10] {message}',
             'style': '{',
         }
@@ -158,7 +158,7 @@ LOGGING = {
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'cs10',
+            'formatter': 'colorama',
             'level': 'INFO',
         },
     },
