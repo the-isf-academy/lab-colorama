@@ -1,7 +1,7 @@
 {% load static %}
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
 {% block head %}
@@ -13,19 +13,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
 
-
     <!-- Custom CSS --!>
-    <link rel="stylesheet" type ="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type ="text/css" href="{% static 'colors_app/style.css' %}">
     
     <title>COLORAMA</title>
 {% endblock %}
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <span class="site-name">Colorama</span>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="flex-shrink-0">
+    <div id="main" class="container-fluid">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</main>
+<footer class="footer mt-auto">
   <div class="container">
-    {% block content %}
-    {% endblock %}
+    <span class="site-slogan">Your favorite color picker</span>
   </div>
-</body>
+</footer>
 
 
 <!-- Latest compiled and minified JavaScript -->

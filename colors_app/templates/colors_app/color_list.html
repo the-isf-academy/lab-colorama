@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
   <div class="row">
@@ -6,13 +7,13 @@
       <h1>All the colors</h1>
       <p>
         <a href="{% url 'colors_app:new_color' %}">
-					Add a new color
+			    Add a new color
 	      </a> 
       </p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-2">
+	<div class="swatches">
+		<div class="swatch">
       <a href="{% url 'colors_app:new_color' %}">
 			  <svg width="200" height="200">
 			    <circle cx="100" cy="100" r="80" style="stroke-width: 4px; stroke: black; fill: none;"></circle>
@@ -21,10 +22,11 @@
 	    </a> 
 		</div>
 	  {% for color in object_list %}
-		  <div class="col-2">
+		  <div class="swatch">
 				{% include "colors_app/swatch.html" %}
 		  </div>
 		{% endfor %}
 	</div>
+	<script src="{% static 'colors_app/offset_swatches.js' %}"></script>
 {% endblock %}
 
