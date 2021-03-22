@@ -162,6 +162,4 @@ LOGGING = {
     },
 }
 
-# THE FUN STUFF
-SITE_NAME = "Colorama"
-SITE_SLOGAN = "Your favorite color-picker"
+HUES_TO_SHOW = 4
