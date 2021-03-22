@@ -166,6 +166,3 @@ LOGGING = {
         'level': 'INFO',
     },
 }
-
-HUES_TO_SHOW = 4
-HUE_OFFSET = 0.08
