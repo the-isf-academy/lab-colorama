@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from colorsys import rgb_to_hsv, hsv_to_rgb
 from colors_app.validators import color_channel_validator
 
 class Color(models.Model):
@@ -28,12 +29,36 @@ class Color(models.Model):
             name = self.name + ' inverted'
         return Color(name=name, red=255-self.red, green=255-self.green, blue=255-self.blue)
 
-    def tinted(self, ratio=0.3, name=None):
-        """Returns a new color, a tinted (more white) version of this one.
-        As with inverted, the math is pretty simple--for each channel, just
-        move its value closer to 255 (white).
-        """
-        if name is None:
-            name = self.name + " tinted {}%".format(ratio * 100)
-        return Color(name=name, 
-            red=255-self.red, green=255-self.green, blue=255-self.blue)
+    def to_hsv(self):
+        "Returns the color as hue, saturation, value instead of in rgb"
+        return rgb_to_hsv(self.red/255, self.green/255, self.blue/255)
+
+    def adjust_hue(self, delta, name=''):
+        "Adjust the hue of the color by `delta`."
+        h, s, v  = self.to_hsv()
+        r, g, b = hsv_to_rgb(h + delta % 1, s, v)
+        return Color(name=name, red=r*255, green=g*255, blue=b*255)
+
+    def adjust_saturation(self, delta, name=''):
+        "Adjust the saturation of the color by `delta`."
+        h, s, v  = self.to_hsv()
+        r, g, b = hsv_to_rgb(h, clamp(s + delta, 0, 1), v)
+        return Color(name=name, red=r*255, green=g*255, blue=b*255)
+
+    def adjust_value(self, delta, name=''):
+        "Adjust the value of the color by `delta`."
+        h, s, v  = self.to_hsv()
+        r, g, b = hsv_to_rgb(h, s, clamp(v + delta, 0, 1))
+        return Color(name=name, red=r*255, green=g*255, blue=b*255)
+
+    def __str__(self):
+        "Defines how a Color will be represented as a string"
+        return "<Color {} ({}, {}, {})>".format(self.name, self.red, self.green, self.blue)
+
+    def __repr__(self):
+        "Defines how a Color will be represented in code"
+        return str(self)
+
+def clamp(value, low, high):
+    "Ensures that the value is between low and high"
+    return min(max(low, value), high)
