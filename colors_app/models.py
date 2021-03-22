@@ -51,6 +51,10 @@ class Color(models.Model):
         r, g, b = hsv_to_rgb(h, s, clamp(v + delta, 0, 1))
         return Color(name=name, red=r*255, green=g*255, blue=b*255)
 
+    def get_absolute_url(self):
+        "Returns a url to this model"
+        return reverse("colors_app:color_detail", args=[self.id])
+
     def __str__(self):
         "Defines how a Color will be represented as a string"
         return "<Color {} ({}, {}, {})>".format(self.name, self.red, self.green, self.blue)
