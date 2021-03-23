@@ -15,16 +15,19 @@ function offsetSwatches() {
 	const swatchesPerOddRow = Math.floor(swatchesWidth / swatchWidth)
 	const swatchesPerEvenRow = Math.floor((swatchesWidth - (swatchWidth/2)) / swatchWidth)
 
-	const swatches = document.getElementsByClassName("swatch")
-	for (let i=0; i < swatches.length; i++) {
-	  const swatch = swatches[i]
-		if (i % (swatchesPerOddRow + swatchesPerEvenRow) === swatchesPerOddRow) {
-				swatch.style['margin-left'] = '' + (swatchWidth / 2) + 'px'
-		}
-		else {
-				swatch.style['margin-left'] = '0'
-	  }
-  }
+	const palettes = document.getElementsByClassName("swatches")
+	for (let p=0; p < palettes.length; p++) {
+	  const swatches = palettes[p].getElementsByClassName("swatch")
+	  for (let i=0; i < swatches.length; i++) {
+	    const swatch = swatches[i]
+		  if (i % (swatchesPerOddRow + swatchesPerEvenRow) === swatchesPerOddRow) {
+				  swatch.style['margin-left'] = '' + (swatchWidth / 2) + 'px'
+		  }
+		  else {
+				  swatch.style['margin-left'] = '0'
+	    }
+    }
+	}
 }
 
 window.addEventListener('resize', offsetSwatches)
