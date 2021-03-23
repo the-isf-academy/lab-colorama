@@ -25,7 +25,12 @@ class ColorDetailView(DetailView):
         color = self.get_object()
         hues = []
         for adjustment in settings.HUES_TO_SHOW:
-            hues.append(color.adjust_hue(adjustment))
+            if adjustment == 0:
+                hues.append(color)
+            else:
+                hue = color.adjust_hue(adjustment)
+                hue.name = hue.hex_code()
+                hues.append(hue)
         context['color'] = color
         context['hues'] = hues
         return context
