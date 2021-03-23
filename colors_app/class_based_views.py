@@ -23,6 +23,7 @@ class ColorDetailView(DetailView):
         "Adds properties to the context dict sent to the template"
         context = super().get_context_data(*args, **kwargs)
         color = self.get_object()
+        context['color'] = color
         hues = []
         for adjustment in settings.HUES_TO_SHOW:
             if adjustment == 0:
@@ -31,6 +32,23 @@ class ColorDetailView(DetailView):
                 hue = color.adjust_hue(adjustment)
                 hue.name = hue.hex_code()
                 hues.append(hue)
-        context['color'] = color
         context['hues'] = hues
+        sats = []
+        for adjustment in settings.SATURATIONS_TO_SHOW:
+            if adjustment == 0:
+                sats.append(color)
+            else:
+                sat = color.adjust_saturation(adjustment)
+                sat.name = sat.hex_code()
+                sats.append(sat)
+        context['saturations'] = sats
+        vals = []
+        for adjustment in settings.VALUES_TO_SHOW:
+            if adjustment == 0:
+                vals.append(color)
+            else:
+                val = color.adjust_value(adjustment)
+                val.name = val.hex_code()
+                vals.append(val)
+        context['values'] = vals
         return context

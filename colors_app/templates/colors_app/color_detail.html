@@ -21,6 +21,22 @@
 		  </div>
 		{% endfor %}
 	</div>
+	<h2>Saturations</h2>
+	<div class="swatches">
+	  {% for color in saturations %}
+		  <div class="swatch">
+				{% include "colors_app/swatch.html" %}
+		  </div>
+		{% endfor %}
+	</div>
+	<h2>Values</h2>
+	<div class="swatches">
+	  {% for color in values %}
+		  <div class="swatch">
+				{% include "colors_app/swatch.html" %}
+		  </div>
+		{% endfor %}
+	</div>
 	<script src="{% static 'colors_app/offset_swatches.js' %}"></script>
 {% endblock %}
 
