@@ -22,9 +22,11 @@
 	    </a> 
 		</div>
 	  {% for color in object_list %}
+		  <a href="{% url 'colors_app:color_detail' color.id %}">
 		  <div class="swatch">
 				{% include "colors_app/swatch.html" %}
 		  </div>
+			</a>
 		{% endfor %}
 	</div>
 	<script src="{% static 'colors_app/offset_swatches.js' %}"></script>

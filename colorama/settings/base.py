@@ -166,3 +166,7 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+HUES_TO_SHOW = [-0.16, -0.8, 0, 0.8, 1.6]
+SATURATIONS_TO_SHOW = [-0.16, -0.8, 0, 0.8, 1.6]
+VALUES_TO_SHOW = [-0.16, -0.8, 0, 0.8, 1.6]
